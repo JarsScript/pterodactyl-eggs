@@ -16,7 +16,7 @@ echo -e "${PURPLE}Current Time: ${YELLOW}$(date)${RESET}"
 
 cd /home/container/ || exit 1
 
-S=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
+S=$(echo -e "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo -e "-${PURPLE}container${YELLOW}@${PURPLE}home: ${RESET}Running startup script..."
 
-exec eval "$S"
+eval $S
