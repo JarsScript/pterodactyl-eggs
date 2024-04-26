@@ -12,7 +12,7 @@ echo -e "${PURPLE}NODE Version: ${YELLOW}$(node -v)${RESET}"
 echo -e "${PURPLE}YARN Version: ${YELLOW}$(yarn -v)${RESET}"
 echo -e "${PURPLE}GIT Version: ${YELLOW}$(git --version)${RESET}"
 echo -e "${PURPLE}Current Time: ${YELLOW}$(date)${RESET}"
-echo -e "${PURPEL}Support Server: ${YELLOW}discord.gg/sillydev${RESET}"
+echo -e "${PURPLE}Support Server: ${YELLOW}discord.gg/sillydev${RESET}"
 
 cd /home/container/ || exit 1
 
