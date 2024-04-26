@@ -1,4 +1,4 @@
-FROM node:21-alpine3.19
+FROM node:21-bullseye-slim
 
 LABEL author="JarsScript" maintainer="jarsscript@gmail.com"
 
