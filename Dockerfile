@@ -1,4 +1,4 @@
-FROM node:21-alpine:3.19
+FROM node:21-alpine3.19
 
 LABEL author="JarsScript" maintainer="jarsscript@gmail.com"
 
