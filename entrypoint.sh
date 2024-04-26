@@ -17,12 +17,13 @@ echo -e "${PURPLE}Current Time: ${YELLOW}$(date)${RESET}"
 cd /home/container/ || exit
 
 #MODIFIED STARTUP
-MODIFIED_STARTUP=$(eval echo "$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g')")
+MODIFIED_STARTUP=$(echo -e "${MODIFIED_STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/&')
+
 # Check if the modified startup script is valid
 if ! [[ -f "${MODIFIED_STARTUP}" ]]; then
   echo "Invalid modified startup script: ${MODIFIED_STARTUP}"
 	exit 1
 fi
-echo -e "-${PURPLE}container${YELLOW}@${PURPLE}home: ${RESET}${MODIFIED_STARTUP}"
+echo -e "-${PURPLE}container${YELLOW}@${PURPLE}home: ${RESET}Running startup script..."
 
-bash -e "${MODIFIED_STARTUP}"
+eval "${MODIFIED_STARTUP}"
