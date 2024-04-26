@@ -19,4 +19,4 @@ cd /home/container/ || exit 1
 S=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 echo -e "-${PURPLE}container${YELLOW}@${PURPLE}home: ${RESET}Running startup script..."
 
-exec env --s "$S"
+exec eval "$S"
