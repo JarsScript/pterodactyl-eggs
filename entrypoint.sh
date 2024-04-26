@@ -26,4 +26,4 @@ if ! [[ -f "${MODIFIED_STARTUP}" ]]; then
 fi
 echo -e "-${PURPLE}container${YELLOW}@${PURPLE}home: ${RESET}Running startup script..."
 
-eval "${MODIFIED_STARTUP}"
+eval ${MODIFIED_STARTUP}
