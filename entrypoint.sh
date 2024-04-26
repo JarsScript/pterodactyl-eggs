@@ -14,15 +14,9 @@ echo -e "${PURPLE}NODE Version: ${YELLOW}$(node -v)${RESET}"
 echo -e "${PURPLE}Current Time: ${YELLOW}$(date)${RESET}"
 
 
-cd /home/container/ || exit
+cd /home/container/ || exit 1
 
-#MODIFIED STARTUP
-MODIFIED_STARTUP=$(echo -e "${STARTUPSCRIPT}" | sed -e 's/{{/${/g' -e 's/}}/}/g')
-# Check if the modified startup script is valid
-if ! [[ -f "${MODIFIED_STARTUP}" ]]; then
-  echo "Invalid modified startup script: ${MODIFIED_STARTUP}"
-	exit 1
-fi
+S=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 echo -e "-${PURPLE}container${YELLOW}@${PURPLE}home: ${RESET}Running startup script..."
 
-eval "${MODIFIED_STARTUP}"
+exec env "$S"
