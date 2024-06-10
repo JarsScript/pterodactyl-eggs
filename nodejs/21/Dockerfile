@@ -3,7 +3,7 @@ FROM node:21-bullseye-slim
 LABEL author="JarsScript" maintainer="jarsscript@gmail.com"
 
 RUN apt-get update 2>&1 \
-  && apt-get -y install --no-install-recommends curl ffmpeg iproute2 git sqlite3 python3 tzdata ca-certificates dnsutils build-essential locales \
+  && apt-get -y install --no-install-recommends curl ffmpeg iproute2 git sqlite3 python3 tzdata ca-certificates dnsutils build-essential locales unzip libatk1.0-0 at-spi2-common \
   && npm -g install npm@latest \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
@@ -21,4 +21,5 @@ ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 CMD [ "/bin/bash", "/entrypoint.sh" ]
