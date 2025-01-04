@@ -10,6 +10,10 @@ SERVER_NAME="${SERVER_NAME:-'Stormworks Server'}"
 STEAM_USERNAME="${STEAM_USERNAME}"
 STEAM_PASSWORD="${STEAM_PASSWORD}"
 STEAM_GUARD_CODE="${STEAM_GUARD_CODE}"
+WORLD_SAVE="${WORLD_SAVE:-""}"  # Default empty save name
+DESPAWN_ON_LEAVE="${DESPAWN_ON_LEAVE:-"true"}"
+PHYSICS_TIMESTEP="${PHYSICS_TIMESTEP:-"180"}"
+WILDLIFE_ENABLED="${WILDLIFE_ENABLED:-"true"}"
 
 # Check if Steam Username and Password are provided, if not, fallback to anonymous login
 if [ -z "$STEAM_USERNAME" ] || [ -z "$STEAM_PASSWORD" ]; then
@@ -28,7 +32,7 @@ else
   fi
 fi
 
-# Install SteamCMD if not already installed, it seems to be needed
+# Install SteamCMD if not already installed
 if [ ! -f "$STEAMCMD_DIR/steamcmd.sh" ]; then
   echo "SteamCMD not found. Installing..."
   mkdir -p $STEAMCMD_DIR
@@ -37,11 +41,11 @@ if [ ! -f "$STEAMCMD_DIR/steamcmd.sh" ]; then
   rm /tmp/steamcmd_linux.tar.gz
 fi
 
+# Login to SteamCMD
 if [ "$ANONYMOUS_LOGIN" = true ]; then
   echo "Logging in anonymously to SteamCMD."
   $STEAMCMD_DIR/steamcmd.sh +login anonymous +force_install_dir $SERVER_DIR +app_update $APP_ID validate +quit
 else
-  # Login with user credentials and 2FA if provided
   if [ ! -z "$STEAM_GUARD_CODE" ]; then
     echo "Using Steam Guard code for authentication."
     $STEAMCMD_DIR/steamcmd.sh +login $STEAM_USERNAME $STEAM_PASSWORD +twofactor $STEAM_GUARD_CODE +force_install_dir $SERVER_DIR +app_update $APP_ID validate +quit
@@ -59,7 +63,11 @@ if [ ! -f "$SERVER_DIR/server_config.xml" ]; then
   <name>$SERVER_NAME</name>
   <port>$PORT</port>
   <max_players>$MAX_PLAYERS</max_players>
-  <password></password>
+  <password>$SERVER_PASSWORD</password>
+  <save_name>$WORLD_SAVE</save_name>
+  <despawn_on_leave>$DESPAWN_ON_LEAVE</despawn_on_leave>
+  <physics_timestep>$PHYSICS_TIMESTEP</physics_timestep>
+  <wildlife_enabled>$WILDLIFE_ENABLED</wildlife_enabled>
 </server>
 EOL
 fi
