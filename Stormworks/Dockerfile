@@ -24,9 +24,9 @@ WORKDIR /home/container
 USER container
 ENV USER=container HOME=/home/container
 
-COPY ./startup.sh /startup.sh
-RUN chmod +x /startup.sh
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 25564/tcp 25564/udp
 
-ENTRYPOINT ["/bin/bash", "/startup.sh"]
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
