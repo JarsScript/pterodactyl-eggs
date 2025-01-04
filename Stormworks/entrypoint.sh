@@ -11,11 +11,9 @@ GREEN='\033[1m\033[32m'
 BLUE='\033[1m\033[94m'
 CYAN='\033[1m\033[96m'
 
-# Display a welcoming message with style
 echo -e "${CYAN}Welcome to the ${GREEN}Stormworks${CYAN} Server!${RESET}"
 echo -e "${PURPLE}Initializing game server...${RESET}"
 
-# Display version information and current time
 echo -e "${BLUE}Game Server Version:${YELLOW} 1.0.0${RESET}"
 echo -e "${BLUE}Current Time:${YELLOW} $(date)${RESET}"
 echo -e "${BLUE}Timezone:${YELLOW} ${TZ}${RESET}"
