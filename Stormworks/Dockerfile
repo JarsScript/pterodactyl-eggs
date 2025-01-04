@@ -25,7 +25,6 @@ USER container
 ENV USER=container HOME=/home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 
 EXPOSE 25564/tcp 25564/udp
 
